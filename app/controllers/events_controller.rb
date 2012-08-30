@@ -1,4 +1,11 @@
 class EventsController < ApplicationController
+  def recreate
+    Event.all.each do |e|
+        e.image.recreate_versions!
+    end
+    redirect_to :action => 'index'
+  end
+
   # GET /events
   # GET /events.json
   def index

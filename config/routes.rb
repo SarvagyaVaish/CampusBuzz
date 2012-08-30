@@ -3,7 +3,11 @@ CampusBuzz::Application.routes.draw do
 
   resources :venues
 
-  resources :events
+  resources :events do
+    collection do
+      get 'recreate'
+    end
+  end
 
   resources :categories
 

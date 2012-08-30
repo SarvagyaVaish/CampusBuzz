@@ -1,14 +1,23 @@
 <% @events.each do |event| %>
 
-  <div class="row">
+  <div class="row panel">
     <div class="three columns mobile-one">
-      <%= image_tag event.image_url(:square) %>
+      <%= image_tag event.image_url(:thumb) %>
     </div>
-    <div class="eight columns mobile-two">
-      <%= event.name %>
-    </div>
-    <div class="one columns mobile-one">
-      <%= image_tag event.image %>
+    <div class="nine columns mobile-three">
+      <div class="row">
+        <div class="twelve columns mobile-four">
+          <%= event.name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="eight columns">
+          Location
+        </div>
+        <div class="four columns">
+          Location
+        </div>
+      </div>
     </div>
   </div>
 

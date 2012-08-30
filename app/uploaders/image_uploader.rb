@@ -39,6 +39,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   version :square do
     process :resize_to_fill => [300, 300]
   end
+  version :thumb do
+    process :resize_to_fill => [300, 240]
+  end
   # version :thumb do
   #   process :scale => [50, 50]
   # end
