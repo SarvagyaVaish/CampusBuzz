@@ -1,7 +1,9 @@
 class EventsController < ApplicationController
+  # GET /events/recreate
+  # GET /events/recreate.json
   def recreate
     Event.all.each do |e|
-        e.image.recreate_versions!
+      e.image.recreate_versions!
     end
     redirect_to :action => 'index'
   end
@@ -48,6 +50,37 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(params[:event])
+
+    respond_to do |format|
+      if @event.save
+        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.json { render json: @event, status: :created, location: @event }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # POST /events
+  # POST /events.json
+  def create_from_scrapper
+    @event = Event.new(params[:event])
+
+    # add category information
+    @event.categories << Category.find_by_name(params[:category][:name])
+
+    # add venue information
+    @venue = Venue.find_by_name(params[:venue][:name])
+    if @venue.nil?
+      @venue = Venue.create(params[:venue])
+    end
+    @event.venue_id = @venue.id
+
+    # sanitize end date if missing
+    if @event.end_dt.nil?
+      @event.end_dt = @event.start_dt + 1.hour
+    end
 
     respond_to do |format|
       if @event.save

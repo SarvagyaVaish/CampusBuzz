@@ -6,6 +6,7 @@ CampusBuzz::Application.routes.draw do
   resources :events do
     collection do
       get 'recreate'
+      post 'create_from_scrapper'
     end
   end
 
