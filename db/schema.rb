@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20120828193557) do
     t.string   "name"
     t.datetime "start_dt"
     t.datetime "end_dt"
-    t.string   "description"
+    t.text   "description"
     t.string   "link"
     t.string   "key"
     t.string   "keytype"
