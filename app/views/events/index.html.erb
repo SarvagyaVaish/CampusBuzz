@@ -1,18 +1,26 @@
 <% @events.each do |event| %>
 
-  <div class="row panel">
-    <div class="three columns center-align">
-      <%= image_tag event.image_url(:thumb) %>
+  <div id='event-<%= event.id %>' class="row panel event-info">
+
+
+    <div class="event-image">
+      <div class="three columns center-align">
+        <%= image_tag event.image_url(:thumb) %>
+      </div>
     </div>
+
+
     <div class="nine columns">
 
-      <div class="row">
-        <div class="twelve columns mobile-four event-name-dottify">
-          <h3><%= event.name %></h3>
+      <div class="event-name">
+        <div class="row">
+          <div class="twelve columns mobile-four event-name-dottify">
+            <h3><%= event.name %></h3>
+          </div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row show-on-level-one hide-on-level-two">
         <div class="eight columns mobile-three">
           <h6><%= Venue.find(event.venue_id).name %></h6>
         </div>
@@ -21,7 +29,7 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row hide-on-level-one show-on-level-two">
         <div class="nine columns mobile-three">
           <div class="event-description-dottify">
             <%= simple_format(event.description) %>
