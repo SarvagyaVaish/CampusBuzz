@@ -8,6 +8,17 @@ class EventsController < ApplicationController
     redirect_to :action => 'index'
   end
 
+  # GET /events/grid
+  # GET /events.grid.json
+  def grid
+    @events = Event.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @events }
+    end
+  end
+
   # GET /events
   # GET /events.json
   def index

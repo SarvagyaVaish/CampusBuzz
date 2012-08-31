@@ -1,0 +1,49 @@
+<hr />
+
+<div class="row">
+  <div class="two columns centered center-align">
+    <span class="radius label">Today</span>
+  </div>
+</div>
+
+<hr />
+
+<% count = 0 %>
+<% open = 0 %>
+<% @events.each do |event| %>
+
+  <% if count % 4 == 0 %><div class="row"><% open = true %><% end %>
+
+    <div class="event-image">
+      <div class="three columns">
+
+        <div class="row">
+          <div class="twelve columns center-align">
+            <%= image_tag event.image_url(:thumb) %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="twelve columns">
+            <%= event.name %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="eight columns">
+            <%= Venue.find(event.venue_id).name %>
+          </div>
+          <div class="four columns">
+            <%= event.start_dt.strftime('%l:%M %P') %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <% count = count + 1 %>
+    <% if count % 4 == 0 %></div><% open = false %><% end %>
+
+<% end %>
+<% if open == true %></div><% open = false %><% end %>
+

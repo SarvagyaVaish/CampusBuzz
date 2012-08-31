@@ -7,6 +7,7 @@ CampusBuzz::Application.routes.draw do
     collection do
       get 'recreate'
       post 'create_from_scrapper'
+      get 'grid'
     end
   end
 
