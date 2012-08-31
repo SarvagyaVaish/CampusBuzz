@@ -17,12 +17,12 @@
 
 
 $(document).ready(function() {
-	$(".event-name-dottify").dotdotdot({
+	$(".event-name-wrapper").dotdotdot({
 		ellipsis    : '... ',
 		wrap      : 'word',
 		after     : null,
 		watch     : true,
-		height      : 30,
+		height      : 20,
 		tolerance   : 0,
 		callback    : function( isTruncated, orgContent ) {},
 		lastCharacter : {
@@ -34,12 +34,12 @@ $(document).ready(function() {
 
 
 $(document).ready(function() {
-	$(".event-description-dottify").dotdotdot({
+	$(".event-location-wrapper").dotdotdot({
 		ellipsis    : '... ',
 		wrap      : 'word',
 		after     : '.more-details',
 		watch     : true,
-		height      : 200,
+		height      : 20,
 		tolerance   : 0,
 		callback    : function( isTruncated, orgContent ) {},
 		lastCharacter : {
