@@ -12,10 +12,10 @@
       </div>
       <div class="row">
         <div class="eight columns">
-          Location
+          <h6><%= Venue.find(event.venue_id).name %></h6>
         </div>
         <div class="four columns">
-          Location
+          <h6><%= l event.start_dt, :format => :short %></h6>
         </div>
       </div>
     </div>
