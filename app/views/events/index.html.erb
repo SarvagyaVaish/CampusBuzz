@@ -1,23 +1,41 @@
 <% @events.each do |event| %>
 
   <div class="row panel">
-    <div class="three columns">
+    <div class="three columns center-align">
       <%= image_tag event.image_url(:thumb) %>
     </div>
     <div class="nine columns">
+
       <div class="row">
-        <div class="twelve columns mobile-four dottify">
+        <div class="twelve columns mobile-four event-name-dottify">
           <h3><%= event.name %></h3>
         </div>
       </div>
+
       <div class="row">
-        <div class="eight columns">
+        <div class="eight columns mobile-three">
           <h6><%= Venue.find(event.venue_id).name %></h6>
         </div>
-        <div class="four columns">
-          <h6><%= l event.start_dt, :format => :short %></h6>
+        <div class="four columns mobile-one">
+          <h6><%= event.start_dt.strftime('%l:%M %P') %></h6>
         </div>
       </div>
+
+      <div class="row">
+        <div class="nine columns mobile-three">
+          <div class="event-description-dottify">
+            <%= simple_format(event.description) %>
+          </div>
+          <div class=".more-details">
+            <%= link_to "More details", event.link %>
+          </div>
+        </div>
+        <div class="three columns mobile-one">
+          <h6><%= Venue.find(event.venue_id).name %></h6>
+          <h6><%= event.start_dt.strftime('%l:%M %P') %></h6>
+        </div>
+      </div>
+
     </div>
   </div>
 
