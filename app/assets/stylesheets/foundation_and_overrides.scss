@@ -77,22 +77,26 @@
 @import 'foundation';
 
 .center-align {
-	text-align: center;
+  text-align: center;
 }
 
 .top-bar {
-	background: $txtColor;
-	h1, h2, h3 {
-		color: #2BA6CB;
-	}
+  background: $txtColor;
+  h1, h2, h3 {
+    color: #2BA6CB;
+  }
 }
 
 .top-bar-divider {
-	height: 4px;
-	background-color: #2BA6CB;
+  height: 4px;
+  background-color: #2BA6CB;
 }
 
 .side-bar {
-	margin-top: 30px;
+  margin-top: 30px;
+}
+
+ a .event-wrapper {
+  color: #333333;
 }
 

@@ -14,48 +14,50 @@
 
   <% if count % 3 == 0 %><div class="row"><% open = true %><% end %>
 
-    <div class="event-image">
-      <div class="four columns">
+    <%= link_to event_path(event) do |e| %>
+      <div class="event-image">
+        <div class="four columns">
 
-        <div class="event-wrapper">
+          <div class="event-wrapper">
 
-          <div class="row">
-            <div class="twelve columns center-align">
-              <div class="image-wrapper-outer">
-                <div class="image-wrapper-inner">
-                  <%= image_tag event.image_url(:thumb) %>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="event-name-wrapper">
             <div class="row">
-              <div class="twelve columns">
-                <%= event.name %>
+              <div class="twelve columns center-align">
+                <div class="image-wrapper-outer">
+                  <div class="image-wrapper-inner">
+                    <%= image_tag event.image_url(:thumb) %>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="event-location-time-wrapper">
-            <div class="row">
-              <div class="nine columns mobile-three">
-                <div class="event-location-wrapper">
-                  <%= Venue.find(event.venue_id).name %>
-                </div>
-              </div>
-              <div class="three columns mobile-one">
-                <div class="event-time-wrapper">
-                  <%= event.start_dt.strftime('%l:%M %P') %>
+            <div class="event-name-wrapper">
+              <div class="row">
+                <div class="twelve columns">
+                  <%= event.name %>
                 </div>
               </div>
             </div>
+
+            <div class="event-location-time-wrapper">
+              <div class="row">
+                <div class="nine columns mobile-three">
+                  <div class="event-location-wrapper">
+                    <%= Venue.find(event.venue_id).name %>
+                  </div>
+                </div>
+                <div class="three columns mobile-one">
+                  <div class="event-time-wrapper">
+                    <%= event.start_dt.strftime('%l:%M %P') %>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
 
         </div>
-
       </div>
-    </div>
+    <% end %>
 
     <% count = count + 1 %>
     <% if count % 3 == 0 %></div><% open = false %><% end %>
