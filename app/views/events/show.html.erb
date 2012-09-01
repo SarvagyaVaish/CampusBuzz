@@ -1,55 +1,68 @@
-<p id="notice"><%= notice %></p>
+<div class="row panel" style="margin-top: 20px;">
+  <div class="eight columns">
+    <h2><%= @event.name %></h2>
 
-<p>
-  <b>Name:</b>
-  <%= @event.name %>
-</p>
+    <hr />
 
-<p>
-  <b>Start dt:</b>
-  <%= @event.start_dt %>
-</p>
+    <div class="row mobile-two">
+      <div class="seven columns">
+        <h6>
+          <% v = Venue.find(@event.venue_id) %>
+          <%= v.name %>
+          <% if !v.street.empty? %>
+            <%= ", #{v.street}" %>
+          <% end %>
+        </h6>
+      </div>
+      <div class="five columns">
+        <h6><%= l @event.start_dt, :format => "%-d %B, %l:%M %p" %></h6>
+      </div>
+    </div>
 
-<p>
-  <b>End dt:</b>
-  <%= @event.end_dt %>
-</p>
+    <div class="row mobile-two show-for-small">
+      <div class="seven columns">
+        <div class="image-wrapper-outer">
+          <div class="image-wrapper-inner">
+            <%= image_tag @event.image_url(:thumb).to_s %>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<p>
-  <b>Description:</b>
-  <%= @event.description %>
-</p>
+    <hr />
 
-<p>
-  <b>Link:</b>
-  <%= @event.link %>
-</p>
+    <div class="row">
+      <div class="twelve columns">
+        <div class="event-description-wrapper">
+          <%= @event.description %>
+        </div>
+      </div>
+    </div>
 
-<p>
-  <b>Key:</b>
-  <%= @event.key %>
-</p>
+    <br />
 
-<p>
-  <b>Keytype:</b>
-  <%= @event.keytype %>
-</p>
+    <div class="row">
+      <div class="twelve columns">
+        <div style="font-style: italic;">
+          <%= link_to "More Information...", @event.link %>
+        </div>
+      </div>
+    </div>
 
-<p>
-  <b>Venue:</b>
-  <%= @event.venue_id %>
-</p>
+  </div>
 
-<p>
-  <b>Published:</b>
-  <%= @event.published %>
-</p>
+  <div class="four columns hide-for-small">
+    <div class="image-wrapper-outer">
+      <div class="image-wrapper-inner">
+        <%= image_tag @event.image_url(:thumb).to_s %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <b>Image:</b>
-  <%= @event.image %>
-</p>
+<br />
 
+<%= link_to 'All Events', events_path, :class => "medium button" %>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<br />
+<br />

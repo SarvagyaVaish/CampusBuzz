@@ -62,6 +62,11 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(params[:event])
 
+    if (params[:existing_venue] == 'false')
+      @venue = Venue.create(params[:venue])
+      @event.venue_id = @venue.id
+    end
+
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -111,6 +116,11 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update_attributes(params[:event])
+        if (params[:existing_venue] == 'false')
+          @venue = Venue.create(params[:venue])
+          @event.venue_id = @venue.id
+          @event.save
+        end
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else

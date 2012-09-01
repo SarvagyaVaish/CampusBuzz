@@ -37,9 +37,26 @@ $(document).ready(function() {
 	$(".event-location-wrapper").dotdotdot({
 		ellipsis    : '... ',
 		wrap      : 'word',
-		after     : '.more-details',
+		after     : null,
 		watch     : true,
 		height      : 20,
+		tolerance   : 0,
+		callback    : function( isTruncated, orgContent ) {},
+		lastCharacter : {
+			remove      : [ ' ', ',', ';', '.', '!', '?' ],
+			noEllipsis    : []
+		}
+	});
+});
+
+
+$(document).ready(function() {
+	$(".event-description-wrapper").dotdotdot({
+		ellipsis    : '... ',
+		wrap      : 'word',
+		after     : null,
+		watch     : true,
+		height      : 120,
 		tolerance   : 0,
 		callback    : function( isTruncated, orgContent ) {},
 		lastCharacter : {

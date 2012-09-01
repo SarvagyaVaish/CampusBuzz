@@ -4,16 +4,6 @@
 	border: 1px solid #CCCCCC;
 	margin-bottom: 20px;
 
-	.image-wrapper-outer {
-		border: 1px solid #E4E4E4;
-		margin-bottom: 3px;
-		
-		.image-wrapper-inner {
-			border: 3px solid #FFFFFF;
-			line-height: 0;
-		}
-	}
-
 	.event-name-wrapper {
 		font-weight: 700;
 		margin: 8px 0px;
@@ -38,3 +28,14 @@
 .event-wrapper:hover {
 	box-shadow: 0px 0px 4px #2BA6CB;
 }
+
+.image-wrapper-outer {
+	border: 1px solid #E4E4E4;
+	margin-bottom: 3px;
+
+	.image-wrapper-inner {
+		border: 3px solid #FFFFFF;
+		line-height: 0;
+	}
+}
+

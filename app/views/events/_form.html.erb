@@ -1,57 +1,145 @@
 <%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-      <ul>
-      <% @event.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+  <div class="row">
+    <div class="twelve columns">
+      <% if @event.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+          <ul>
+            <% @event.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
     </div>
-  <% end %>
+  </div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="row">
+    <div class="six columns">
+
+      <fieldset>
+        <legend>General</legend>
+
+        <div class="row">
+          <div class="twelve columns">
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="twelve columns">
+            <%= f.label :description %>
+            <%= f.text_area :description, :rows => 5 %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="twelve columns">
+            <%= f.label :link %>
+            <%= f.text_field :link %>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <div class="row">
+        <div class="twelve columns">
+          <fieldset>
+            <legend>Image</legend>
+            <%= f.label "Upload Image" %>
+            <%= f.file_field :image %>
+            <%= f.label "Image Link" %>
+            <%= f.text_field :remote_image_url %>
+            <% if !@event.image_url.nil? %>
+              <%= f.label "Current Image" %>
+              <%= image_tag @event.image_url %>
+            <% end %>
+          </fieldset>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="six columns">
+
+      <div class="row">
+        <div class="twelve columns">
+          <fieldset>
+            <legend>Date & Time</legend>
+            <%= f.label "Start" %>
+            <%= f.text_field :start_dt %>
+            <%= f.label "End" %>
+            <%= f.text_field :end_dt %>
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="twelve columns">
+          <fieldset>
+            <legend>Venue</legend>
+            <%= radio_button_tag "existing_venue", true, true, :class => 'left' %><%= f.label "Select existing venue", :class => 'left' %>
+            <%= f.collection_select :venue_id, Venue.all, :id, :name, {}, { :selected => @event.venue_id } %>
+
+            <br /><br />
+
+            <div class="row">
+              <div class="twelve columns">
+                <%= radio_button_tag "existing_venue", false, false, :class => 'left' %><%= f.label "Add new location", :class => 'left' %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="two columns">
+                <%= label_tag "Name", nil, :class => "right inline" %>
+              </div>
+              <div class="ten columns">
+                <%= text_field(:venue, :name) %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="two columns">
+                <%= label_tag "Street", nil, :class => "right inline" %>
+              </div>
+              <div class="ten columns">
+                <%= text_field(:venue, :street) %>
+              </div>
+            </div>
+
+            <%= text_field(:venue, :city, :value => 'Atlanta', :type => 'hidden') %>
+            <%= text_field(:venue, :state, :value => 'GA', :type => 'hidden') %>
+            <%= text_field(:venue, :zip, :value => '30332', :type => 'hidden') %>
+            <%= text_field(:venue, :country, :value => 'USA', :type => 'hidden') %>
+
+
+            <br />
+            <br />
+          </fieldset>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="twelve columns">
+          <fieldset>
+            <legend>Admin</legend>
+            <%= f.check_box :published, :class => 'left' %><%= f.label "Publish this event", :class => 'left' %>
+            <br />
+            <br />
+          </fieldset>
+        </div>
+      </div>
+
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :start_dt %><br />
-    <%= f.datetime_select :start_dt %>
+
+  <div class="row">
+    <div class="two columns">
+      <%= f.submit :class => "medium button" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :end_dt %><br />
-    <%= f.datetime_select :end_dt %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :link %><br />
-    <%= f.text_field :link %>
-  </div>
-  <div class="field">
-    <%= f.label :key %><br />
-    <%= f.text_field :key %>
-  </div>
-  <div class="field">
-    <%= f.label :keytype %><br />
-    <%= f.text_field :keytype %>
-  </div>
-  <div class="field">
-    <%= f.label :venue_id %><br />
-    <%= f.number_field :venue_id %>
-  </div>
-  <div class="field">
-    <%= f.label :published %><br />
-    <%= f.check_box :published %>
-  </div>
-  <div class="field">
-    <%= f.label :image %><br />
-    <%= f.file_field :image, :class => 'file_field' %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
 <% end %>
