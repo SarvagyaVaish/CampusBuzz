@@ -4,28 +4,24 @@
 
     <hr />
 
-    <div class="row mobile-two">
-      <div class="seven columns">
-        <h6>
-          <% v = Venue.find(@event.venue_id) %>
-          <%= v.name %>
-          <% if !v.street.empty? %>
-            <%= ", #{v.street}" %>
-          <% end %>
-        </h6>
-      </div>
-      <div class="five columns">
-        <h6><%= l @event.start_dt, :format => "%-d %B, %l:%M %p" %></h6>
+    <div class="four columns show-for-small center-align">
+      <div class="image-wrapper-outer">
+        <div class="image-wrapper-inner">
+          <%= image_tag @event.image_url(:thumb).to_s %>
+        </div>
       </div>
     </div>
 
-    <div class="row mobile-two show-for-small">
+    <div class="row">
+      <div class="five columns">
+        <h6><%= l @event.start_dt, :format => "%-d %B, %l:%M %p" %></h6>
+      </div>
       <div class="seven columns">
-        <div class="image-wrapper-outer">
-          <div class="image-wrapper-inner">
-            <%= image_tag @event.image_url(:thumb).to_s %>
-          </div>
-        </div>
+        <% v = Venue.find(@event.venue_id) %>
+        <h6><%= v.name %></h6>
+        <% if !v.street.empty? %>
+          <%= v.street %>
+        <% end %>
       </div>
     </div>
 
@@ -64,5 +60,4 @@
 
 <%= link_to 'All Events', events_path, :class => "medium button" %>
 
-<br />
 <br />
